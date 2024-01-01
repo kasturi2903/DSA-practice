@@ -1,0 +1,34 @@
+
+#include <bits/stdc++.h> 
+vector<int> getSecondOrderElements(int n, vector<int> a) {
+    // Write your code here.
+    int maxi =INT_MIN;
+    int mini=INT_MAX;
+    vector<int>ans;
+    for(int i=0;i<a.size();i++){
+        if(a[i]>maxi){
+            maxi=max(a[i],maxi);
+        }
+        if(a[i]<mini){
+            mini=min(a[i],mini);
+        }
+
+    }
+    int maxii =INT_MIN;
+    int minii=INT_MAX;
+
+    for(int i=0;i<a.size();i++){
+        if(a[i]>maxii &&a[i]!=maxi){
+            maxii=max(a[i],maxii);
+        }
+        if(a[i]<minii &&a[i]!=mini){
+            minii=min(a[i],minii);
+        }
+
+    }
+    
+    ans.push_back(maxii);
+    ans.push_back(minii);
+    return ans;
+
+}
