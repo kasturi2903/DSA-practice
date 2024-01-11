@@ -1,0 +1,40 @@
+int possible(vector <int> stalls,int k ,int mid){
+    int cnt=1;
+    int x= stalls[0];
+    for(int i=1;i<stalls.size();i++){
+         int a= stalls[i]-x;
+         if(a>=mid){
+            cnt+=1;
+            x=stalls[i];
+         }
+        
+    }
+    if(cnt>=k){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+
+}
+int aggressiveCows(vector<int> &stalls, int k)
+{
+    //    Write your code here.
+    sort(stalls.begin(),stalls.end());
+    int n= stalls.size();
+    int low=0;
+    int high = stalls[n-1]-stalls[0];
+    while(low<=high){
+        int mid=(low+high)/2;
+        int pos = possible(stalls,  k, mid);
+        if(pos==1){
+            low= mid+1;
+        }
+        else{
+            high= mid-1;
+        }
+    }
+
+    return high;
+
+}
