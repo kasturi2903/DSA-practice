@@ -1,0 +1,57 @@
+/**
+ * Definition of doubly linked list:
+ *
+ * class Node {
+ * public:
+ *      int data;
+ *      Node *prev;
+ *      Node *next;
+ *      Node() {
+ *          this->data = 0;
+ *          this->prev = NULL;
+ *          this->next = NULL;
+ *      }
+ *      Node(int data) {
+ *          this->data = data;
+ *          this->prev = NULL;
+ *          this->next = NULL;
+ *      }
+ *      Node (int data, Node *next, Node *prev) {
+ *          this->data = data;
+ *          this->prev = prev;
+ *          this->next = next;
+ *      }
+ * };
+ *
+ *************************************************************************/
+
+Node * deleteAllOccurrences(Node* head, int k) {
+    // Write your code here
+    Node* p=head;
+    Node* q=nullptr;
+    while (p != nullptr && p->data == k) {
+        head = p->next;
+        delete p;
+        p = head;
+    }
+    while(p!=nullptr){
+        
+        if(p->data==k){
+            if(q==nullptr){
+                head=p->next;
+            }
+            else{
+                q->next=p->next;
+            }
+        }
+        q=p;
+        p=p->next;
+    }
+    return head;
+
+
+
+
+
+
+}
