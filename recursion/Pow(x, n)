@@ -1,0 +1,22 @@
+class Solution {
+public:
+    double myPow(double x, long long n) {
+        
+        if(n==0){
+            return 1.0;
+        }
+        if(n<1){
+            x=1/x;
+            n=-n;
+        }
+
+        double half_pow= myPow(x,n/2);
+       
+        if(n%2==0){
+            return half_pow*half_pow;
+        }
+        else{
+            return x*half_pow*half_pow;
+        }
+    }
+};
