@@ -1,0 +1,11 @@
+bool isPowerOfTwo(int n)
+{	
+    // Write your code here.
+   int bitValue= n&(n-1);
+    if(bitValue==0){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
