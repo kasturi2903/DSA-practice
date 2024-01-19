@@ -1,0 +1,11 @@
+string oddEven(int N){
+    // Write your code here.
+    int bitValue= N&1;
+    if (bitValue==0){
+        return "even";
+    }
+    else{
+        return "odd";
+    }
+
+}
