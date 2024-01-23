@@ -1,0 +1,18 @@
+string postToInfix(string s) {
+    // Write your code here.
+    std::stack<std::string> st;
+
+    for (int i = 0; i<s.size(); i++) {
+        if ((s[i] >= 'a' && s[i] <= 'z')||s[i] >= 'A' && s[i] <= 'Z') {
+            st.push(std::string(1, s[i]));
+        } else {
+            std::string op2 = st.top();
+            st.pop();
+            std::string op1 = st.top();
+            st.pop();
+            st.push("(" + op1 + s[i] + op2 + ")");
+        }
+    }
+
+    return st.top();
+}
