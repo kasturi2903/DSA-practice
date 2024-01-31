@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int characterReplacement(string s, int k) {
+        int ans = 0;
+        int maxCount = 0;
+        int left = 0;
+        unordered_map<char, int> charCount;
+
+        for (int right = 0; right < s.length(); right++) {
+            charCount[s[right]]++;
+
+            // Update maxCount with the most frequent character in the current window
+            maxCount = max(maxCount, charCount[s[right]]);
+
+            // If the number of replacements needed is greater than k, shrink the window
+            if (right - left + 1 - maxCount > k) {
+                charCount[s[left]]--;
+                left++;
+            }
+
+            // Update ans with the current window size
+            ans = max(ans, right - left + 1);
+        }
+
+        return ans;
+    }
+};
