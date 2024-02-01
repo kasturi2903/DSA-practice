@@ -1,0 +1,52 @@
+/*
+    Following is Binary Tree Node structure:
+    class TreeNode
+    {
+    public:
+        int data;
+        TreeNode *left, *right;
+        TreeNode() : data(0), left(NULL), right(NULL) {}
+        TreeNode(int x) : data(x), left(NULL), right(NULL) {}
+        TreeNode(int x, TreeNode *left, TreeNode *right) : data(x), left(left), right(right) {}
+    };
+*/
+vector<int> inorder(TreeNode *root){
+    vector<int> in;
+    if(root==nullptr) return in;
+    vector<int> left = inorder(root->left);
+    in.insert(in.end(), left.begin(), left.end());
+    in.push_back(root->data);
+    vector<int> right = inorder(root->right);
+    in.insert(in.end(), right.begin(), right.end());
+    return in;
+}
+
+vector<int> preorder(TreeNode *root){
+    vector<int> pre;
+    if(root==nullptr) return pre;
+    pre.push_back(root->data);
+    vector<int> left = preorder(root->left);
+    pre.insert(pre.end(), left.begin(), left.end());
+    vector<int> right = preorder(root->right);
+    pre.insert(pre.end(), right.begin(), right.end());
+    return pre;
+}
+
+vector<int> postorder(TreeNode *root){
+    vector<int> post;
+    if(root==nullptr) return post;
+    vector<int> left = postorder(root->left);
+    post.insert(post.end(), left.begin(), left.end());
+    vector<int> right = postorder(root->right);
+    post.insert(post.end(), right.begin(), right.end());
+    post.push_back(root->data);
+    return post;
+}
+
+vector<vector<int>> getTreeTraversal(TreeNode *root){
+    vector<vector<int>> traversal;
+    traversal.push_back(inorder(root));
+    traversal.push_back(preorder(root));
+    traversal.push_back(postorder(root));
+    return traversal;
+}
