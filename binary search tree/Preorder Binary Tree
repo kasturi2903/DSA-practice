@@ -1,0 +1,41 @@
+/************************************************************
+
+    Following is the TreeNode class structure
+
+    template <typename T>
+    class TreeNode {
+       public:
+        T data;
+        TreeNode<T> *left;
+        TreeNode<T> *right;
+
+        TreeNode(T data) {
+            this->data = data;
+            left = NULL;
+            right = NULL;
+        }
+    };
+
+************************************************************/
+#include <stack>
+#include <vector>
+using namespace std;
+vector<int> preOrder(TreeNode<int> * root){
+    // Write your code here.
+    stack<TreeNode<int>*> st;
+    vector <int> ans;
+    if(root==nullptr) return ans;
+   
+    st.push(root);
+    while(!st.empty()){
+        TreeNode<int>* node= st.top();
+        st.pop();
+        ans.push_back(node->data);
+        if(node->right!= nullptr) st.push(node->right);
+        if(node->left!=nullptr) st.push(node->left);
+
+    }
+    return ans;
+
+
+}
