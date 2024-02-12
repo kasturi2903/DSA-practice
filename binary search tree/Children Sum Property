@@ -1,0 +1,72 @@
+/*
+Following is the class structure of the Node class:
+
+class Node
+{
+public:
+    int data;
+    Node *left, *right;
+    Node()
+    {
+        this->data = 0;
+        left = NULL;
+    }
+    Node(int data)
+    {
+        this->data = data; 
+        this->left = NULL;
+        this->right = NULL;
+    }
+    Node(int data, Node* left, Node* right)
+    {
+        this->data = data;
+        this->left = left;
+        this->right = right;
+    }
+};
+*/
+
+/*
+Following is the class structure of the Node class:
+
+class Node
+{
+public:
+    int data;
+    Node *left, *right;
+    Node()
+    {
+        this->data = 0;
+        left = NULL;
+    }
+    Node(int data)
+    {
+        this->data = data; 
+        this->left = NULL;
+        this->right = NULL;
+    }
+    Node(int data, Node* left, Node* right)
+    {
+        this->data = data;
+        this->left = left;
+        this->right = right;
+    }
+};
+*/
+
+bool isParentSum(Node *root){
+    // Write your code here.
+    if (root==nullptr ||(root->left==nullptr && root->right==nullptr)){
+        return true;
+    }
+    int sum=0;
+    if(root->left) sum+= root->left->data;
+     if(root->right) sum+= root->right->data;
+
+    if(root->data!=sum){
+      return false;
+    }
+    bool left= isParentSum(root->left);
+    bool right= isParentSum(root->right);
+    return left&&right;
+}
